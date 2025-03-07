@@ -1,0 +1,8 @@
+The article from PMC supports the claim that Type 1 Diabetes is associated with insulin resistance and beta-cell dysfunction. Scientific evidence includes:
+
+1. Increasing incidence of insulin resistance in individuals with Type 1 Diabetes (T1D).
+2. Shared complications between T1D and Type 2 Diabetes (T2D), such as cardiomyopathy, are typically linked to insulin resistance.
+3. Factors like oxidative stress and inflammation contributing to insulin resistance even in T1D.
+4. Recognition of high levels of advanced glycation end products due to hyperglycemia, leading to insulin signaling deregulation, which indicates beta-cell dysfunction.
+
+Given these points, the claim is rated 8/10 for accuracy, as it reflects both traditional insights and emerging evidence regarding insulin resistance in T1D. The detailed evaluation and rating are based solely on the article's content.
