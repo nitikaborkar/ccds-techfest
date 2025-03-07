@@ -1,0 +1,11 @@
+[
+    {
+        "url": "https://avmajournals.avma.org/view/journals/ajvr/62/3/ajvr.2001.62.440.xml",
+        "author": "Richard C. Hill et al.",
+        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
+        "rating": 0,
+        "scientific_evidence": "The study mentions a moderate-protein (MP) diet containing 24% metabolizable-energy (ME) protein, but it does not provide specific information about the total weight of the food packet or the amount of protein in grams. Therefore, the claim that it equates to 9.6 grams of protein cannot be verified with the provided information.",
+        "counter_claim": "The evidence does not support the claim because it lacks the necessary details about the total weight of the dog food packet to calculate the actual grams of protein. Without this information, we cannot confirm that 24% protein translates to 9.6 grams.",
+        "error": false
+    }
+]

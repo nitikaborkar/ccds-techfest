@@ -1,0 +1,11 @@
+[
+    {
+        "url": "https://www.sciencedirect.com/science/article/pii/S0022316622166344",
+        "author": "Blanco Mejia Sonia et al.",
+        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
+        "rating": -1,
+        "scientific_evidence": "The content from the URL discusses a meta-analysis of studies on soy protein and its effects on cholesterol levels, but it does not provide any information regarding dog food or protein content in dog food.",
+        "counter_claim": "Since the URL does not contain any relevant information about dog food or its protein content, the claim cannot be evaluated.",
+        "error": false
+    }
+]

@@ -1,1 +1,11 @@
-The claim that 'Type 1 Diabetes Is Associated with Insulin Resistance and Beta-Cell Dysfunction' is refuted by the article "Insulin Resistance, Type 1 and Type 2 Diabetes, and Related Complications 2017" on PMC. \n\n**Explanation**:  \nType 1 diabetes is described as being primarily caused by an autoimmune-induced destruction of pancreatic beta cells leading to insulin deficiency—without a mention of insulin resistance as a primary feature. On the other hand, Type 2 diabetes is clearly associated with peripheral insulin resistance and beta-cell dysfunction. \n\n**Scientific Evidence**:  \nThe article specifies: \n- Type 1 diabetes results from autoimmune-mediated beta-cell destruction, leading to an absence of insulin production. \n- Type 2 diabetes involves a combination of insulin resistance and dysfunctional pancreatic beta-cell secretion. \n\n**Rating**: \nI rate the claim a 2/10 for accuracy because it inaccurately represents the key pathophysiological traits of Type 1 diabetes.  \n\n**Counter Argument**: \nThe central distinction outlined is that while beta-cell dysfunction and insulin resistance are indeed hallmarks of Type 2 diabetes, Type 1 diabetes involves autoimmune beta-cell destruction without inherent insulin resistance."
+[
+    {
+        "url": "https://www.ideals.illinois.edu/items/117262",
+        "author": "Traughber, Zachary T.",
+        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
+        "rating": -1,
+        "scientific_evidence": "The provided content does not mention any specific protein percentage or the amount of protein in grams in the dog food tested. The focus of the research is on evaluating various carbohydrate and fiber sources in canine diets, not on the protein content.",
+        "counter_claim": "Since the content does not provide any information regarding the protein content of the dog food, the claim cannot be supported or refuted based on the available evidence.",
+        "error": false
+    }
+]

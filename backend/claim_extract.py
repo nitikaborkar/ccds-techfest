@@ -1,32 +1,75 @@
 import openai
+import os
 import json
 
-# OpenAI API Key
-OPENAI_API_KEY = "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"
-
-# Read the text file
-file_path = r"C:\Users\mokj0\OneDrive - Nanyang Technological University\Desktop\ccds-techfest\outputs\Video by ayuswellnessuk.txt"
-with open(file_path, "r", encoding="utf-8") as file:
-    file_content = file.read()
-
-# Define your prompt
-prompt = "Extract all the medical claims made in this video.\n\n" + file_content
-
-# Call OpenAI API
-client = openai.OpenAI(api_key=OPENAI_API_KEY)
-response = client.chat.completions.create(
-model="gpt-4o-mini",
-messages=[{"role": "user", "content": prompt}]
-)
-
-output_text= response.choices[0].message.content
-
-
-
-
-# Save response to a text file
-output_txt_path = "output.txt"
-with open(output_txt_path, "w", encoding="utf-8") as txt_file:
-    txt_file.write(output_text)
-
-print(f"Response saved to {output_txt_path}")
+class ClaimExtractor:
+    def __init__(self, api_key=None, model="gpt-4o-mini"):
+        """
+        Initialize the ClaimExtractor
+        
+        Args:
+            api_key (str, optional): OpenAI API key
+            model (str): OpenAI model to use for extraction
+        """
+        # Set API key (prioritize passed key, then env variable)
+        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        if not self.api_key:
+            raise ValueError("OpenAI API key not found. Please provide it or set OPENAI_API_KEY environment variable.")
+        
+        self.model = model
+        # Initialize OpenAI client
+        self.client = openai.OpenAI(api_key=self.api_key)
+    
+    def extract_claims(self, transcription, output_dir="outputs"):
+        """
+        Extract and summarise the health and fitness claims from the transcription into a simple query format for fact-checking.
+        Args:
+            transcription (str): Text transcription of the video
+            output_dir (str): Directory to save the extracted claims
+            
+        Returns:
+            tuple: (claims_text, claims_list, claims_path)
+        """
+        try:
+            # Create output directory
+            os.makedirs(output_dir, exist_ok=True)
+            
+            # Define prompt for extracting claims
+            prompt = f""""Analyze the transcript of this video and extract the final, scientifically verifiable health or fitness claim.  Provide only one concise statement summarizing the main health claim."
+            Transcript:
+            {transcription}"""
+            
+            # Call OpenAI API
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                max_tokens=500
+            )
+            
+            claims_text = response.choices[0].message.content
+            
+            # Try to parse the claims into a list (assuming bullet points)
+            claims_list = [
+                claim.strip().lstrip("•-*").strip() 
+                for claim in claims_text.split("\n") 
+                if claim.strip() and not claim.strip().startswith("#")
+            ]
+            claims_list = [claim for claim in claims_list if claim]
+            
+            # Save the claims to a file
+            claims_path = os.path.join(output_dir, "extracted_claims.txt")
+            with open(claims_path, "w", encoding="utf-8") as f:
+                f.write(claims_text)
+            
+            # Also save as JSON for programmatic use
+            json_path = os.path.join(output_dir, "extracted_claims.json")
+            with open(json_path, "w", encoding="utf-8") as f:
+                json.dump(claims_list, f, indent=2)
+            
+            print(f"Claims extracted and saved to {claims_path}")
+            return claims_text, claims_list, claims_path
+            
+        except Exception as e:
+            print(f"Error extracting claims: {e}")
+            return None, None, None
+    
