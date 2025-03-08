@@ -152,6 +152,22 @@ const ProgressIndicator = ({ onComplete, onError }) => {
         <p className="text-gray-600 dark:text-gray-300 text-sm">
           <span className="font-medium">This process may take up to 10 minutes.</span> Our AI is analyzing the claim, gathering evidence, and consulting reliable sources to ensure accurate verification.
         </p>
+        <div className="mt-3 flex justify-center space-x-2">
+          {[1, 2, 3, 4].map((step) => (
+            <div 
+              key={step} 
+              className={`w-2 h-2 rounded-full ${
+                elapsedTime > step * 60 ? 'bg-green-500' : 'bg-gray-300 dark:bg-gray-600'
+              }`}
+            ></div>
+          ))}
+        </div>
+        <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+          {elapsedTime < 60 && "Analyzing claim content..."}
+          {elapsedTime >= 60 && elapsedTime < 120 && "Searching for relevant evidence..."}
+          {elapsedTime >= 120 && elapsedTime < 300 && "Evaluating sources and verifying information..."}
+          {elapsedTime >= 300 && elapsedTime < 600 && "Generating final verification report..."}
+        </p>
       </motion.div>
     </motion.div>
   );

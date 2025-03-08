@@ -39,20 +39,16 @@ export const checkVerificationStatus = async () => {
   }
 };
 
-// Function to verify text claim (placeholder for future implementation)
+// Function to verify text claim
 export const verifyTextClaim = async (claim) => {
   try {
-    // This is a mock implementation since the endpoint doesn't exist in the backend
-    // In a real implementation, you would call an actual API endpoint
+    // Call the actual backend endpoint for claim verification
+    const response = await apiClient.post('/verify-claim', { claim });
     
-    // Simulating API call with 3-second delay
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    // For now, return a mock response
+    // Return just the initial response - the actual status checking will be done separately
     return {
-      consensus: ['True', 'False', 'Neutral'][Math.floor(Math.random() * 3)],
-      evidence: 'This is a placeholder response for text claim verification. Your backend needs to implement this functionality.',
-      claim: claim
+      message: "Verification process started. This may take up to 10 minutes to complete.",
+      jobStarted: true
     };
   } catch (error) {
     console.error('Error verifying text claim:', error);

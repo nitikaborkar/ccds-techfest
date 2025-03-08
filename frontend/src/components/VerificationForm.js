@@ -74,10 +74,19 @@ const VerificationForm = ({ setIsLoading, setResult, setError, activeTab, setAct
       setIsLoading(true);
       // Call the API endpoint
       const data = await verifyTextClaim(textClaim);
-      setResult(data);
+      
+      // Check if we received a job started response
+      if (data.jobStarted) {
+        // Switch to the processing state for long-running verification
+        setIsLoading(false);
+        setIsProcessing(true);
+      } else {
+        // Regular response flow
+        setResult(data);
+        setIsLoading(false);
+      }
     } catch (error) {
       setError(error.message || "An error occurred while verifying the claim");
-    } finally {
       setIsLoading(false);
     }
   };
