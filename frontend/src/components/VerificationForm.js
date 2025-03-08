@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { verifyVideoUrl, verifyTextClaim, checkDeepfake } from '../utils/api';
 import ImageUploader from './ImageUploader';
 
-const VerificationForm = ({ setIsLoading, setResult, setError, activeTab, setActiveTab, setIsProcessing }) => {
+const VerificationForm = ({ setIsLoading, setResult, setError, activeTab, setActiveTab, setIsProcessing, setShowStamp }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const [textClaim, setTextClaim] = useState('');
   const [isUrlValid, setIsUrlValid] = useState(true);
@@ -104,9 +104,10 @@ const VerificationForm = ({ setIsLoading, setResult, setError, activeTab, setAct
         claim: "Is this image authentic?"
       };
       setResult(formattedResult);
+      setShowStamp(true); // Show the stamp animation
+      setIsLoading(false);
     } catch (error) {
       setError(error.message || "An error occurred while analyzing the image");
-    } finally {
       setIsLoading(false);
     }
   };

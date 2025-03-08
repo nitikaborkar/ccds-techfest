@@ -39,13 +39,61 @@ const ResultCard = ({ result, onReset }) => {
   const getStatusLabel = (consensus) => {
     switch (consensus) {
       case 'True':
-        return 'Verified True';
+        return '✅ VERIFIED (True Claim) – "Science Wins!"';
       case 'False':
-        return 'Verified False';
+        return '❌ UNVERIFIED (False Claim) – "Straight-up Nonsense!"';
       case 'Neutral':
-        return 'Inconclusive';
+        return '🤔 NEUTRAL (Unclear/Needs More Evidence) – "Suspicious!"';
       default:
         return 'Insufficient Data';
+    }
+  };
+  
+  const getFunnyQuote = (consensus) => {
+    // Array of fun quotes for each verification type
+    const trueQuotes = [
+      '"Hold the applause, folks—we actually found a true fact!" 🎉👏',
+      '"Approved by scientists, not your WhatsApp uncle." 📲👴',
+      '"Would Dr. House lie to you? (No, and neither would we.)" 🏥🩺',
+      '"Congratulations! You found a real fact on the internet! Rare." 🏆📡',
+      '"This one\'s been lab-tested and meme-proofed." 🧪😂',
+      '"If facts had a VIP section, this claim would be on the list." 🎟️✅',
+      '"It\'s as real as your student loans. (Sorry.)" 💰😢',
+      '"Confirmed by experts, not that guy from your gym." 🏋️‍♂️🤦‍♂️'
+    ];
+    
+    const falseQuotes = [
+      '"🚨 This claim has been certified GARBAGE!" 🗑️🔥',
+      '"Big nope. Science said, \'Try again, sweetie.\'" ❌💅',
+      '"Quacks detected! Time to send this claim back to 1802." 🦆📜',
+      '"More fake than your ex\'s promises." 💔😂',
+      '"If BS were an Olympic sport, this claim would take gold." 🥇💩',
+      '"This myth is so busted, it\'s crying in the corner." 😭🔨',
+      '"Warning: Reading this claim might lower your IQ." 🧠⬇️',
+      '"The only thing this cures is boredom… and common sense." 😵‍💫💊'
+    ];
+    
+    const neutralQuotes = [
+      '"Science is still running the tests… be patient!" 🔬⏳',
+      '"Hmm… smells fishy, but no official verdict yet." 🐟🤨',
+      '"It\'s not fake, but it\'s not fully cooked either." 🍳🤷‍♂️',
+      '"TBD: Truth or nonsense? Stay tuned!" 📺🔍',
+      '"We asked science, and it shrugged." 🧑‍🔬🤷‍♂️',
+      '"50% facts, 50% fairy dust. Use caution." 🧚‍♂️⚖️',
+      '"Even Google is confused. That says a lot." 🌐😵',
+      '"Science is still arguing over this at a conference." 🎤👨‍⚕️'
+    ];
+    
+    // Select a random quote based on consensus
+    switch(consensus) {
+      case 'True':
+        return trueQuotes[Math.floor(Math.random() * trueQuotes.length)];
+      case 'False':
+        return falseQuotes[Math.floor(Math.random() * falseQuotes.length)];
+      case 'Neutral':
+        return neutralQuotes[Math.floor(Math.random() * neutralQuotes.length)];
+      default:
+        return '"The jury\'s still out on this one. We need more evidence. 🔍📚"';
     }
   };
 
@@ -120,8 +168,8 @@ const ResultCard = ({ result, onReset }) => {
                 <h3 className={`text-xl font-bold ${colorScheme.text}`}>
                   {getStatusLabel(result.consensus)}
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                  AI-powered verification result
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                  {getFunnyQuote(result.consensus)}
                 </p>
               </div>
             </motion.div>

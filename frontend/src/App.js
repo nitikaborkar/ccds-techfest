@@ -5,6 +5,7 @@ import VerificationForm from './components/VerificationForm';
 import ResultCard from './components/ResultCard';
 import LoadingIndicator from './components/LoadingIndicator';
 import ProgressIndicator from './components/ProgressIndicator';
+import SvgStampAnimation from './components/SvgStampAnimation';
 import './index.css';
 
 function App() {
@@ -13,9 +14,10 @@ function App() {
   const [result, setResult] = useState(null);
   const [activeTab, setActiveTab] = useState('video');
   const [error, setError] = useState(null);
-  const [theme, setTheme] = useState('light');
+  const [showStamp, setShowStamp] = useState(false);
 
   // Track theme changes for background animation
+  const [theme, setTheme] = useState('light');
   useEffect(() => {
     const isDark = document.documentElement.classList.contains('dark');
     setTheme(isDark ? 'dark' : 'light');
@@ -36,6 +38,7 @@ function App() {
   const handleReset = () => {
     setResult(null);
     setError(null);
+    setShowStamp(false);
   };
 
   // Animation variants
@@ -92,6 +95,14 @@ function App() {
         animate="animate"
       >
         <AnimatePresence mode="wait">
+          {/* Show the stamp animation when needed */}
+          {showStamp && result && (result.consensus === 'True' || result.consensus === 'False') && (
+            <SvgStampAnimation 
+              result={result.consensus} 
+              onComplete={() => setShowStamp(false)} 
+            />
+          )}
+          
           {error && (
             <motion.div 
               className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-md shadow-md dark:bg-red-900/30 dark:text-red-300"
@@ -138,6 +149,7 @@ function App() {
                 setError={setError}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
+                setShowStamp={setShowStamp}
               />
             </motion.div>
           )}
@@ -168,6 +180,8 @@ function App() {
                 onComplete={(data) => {
                   setResult(data);
                   setIsProcessing(false);
+                  // Show stamp animation when verification is complete
+                  setShowStamp(true);
                 }}
                 onError={(errorMsg) => {
                   setError(errorMsg);

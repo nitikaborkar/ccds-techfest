@@ -63,7 +63,7 @@ const Header = () => {
           </motion.div>
           <div className="space-y-0.5">
             <h1 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">
-              VerifyAI
+              MedBuster
             </h1>
             <div className="flex items-center">
               <span className="text-xs py-0.5 px-2 bg-indigo-100 text-indigo-800 rounded-full dark:bg-indigo-900 dark:text-indigo-200 inline-flex items-center">
