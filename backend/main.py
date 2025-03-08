@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import Optional, Dict
+from typing import Optional, Dict, List
 from fastapi.middleware.cors import CORSMiddleware
 import torch
 from transformers import ViTForImageClassification, ViTImageProcessor
@@ -52,8 +52,12 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 class VideoURL(BaseModel):
     url: str
+
+class DirectClaim(BaseModel):
+    claim: str
 
 class VerificationResult(BaseModel):
     video_path: Optional[str] = None
@@ -66,6 +70,7 @@ class VerificationResult(BaseModel):
     supporting_count: Optional[int] = None
     opposing_count: Optional[int] = None
     total_valid_ratings: Optional[int] = None
+    error: Optional[str] = None
 
 # Global variables to store the current verification state
 current_verification = None
@@ -83,10 +88,25 @@ async def verify_video(video_url: VideoURL, background_tasks: BackgroundTasks):
         raise HTTPException(status_code=400, detail="Another verification is already in progress")
     
     # Start the verification process in the background
-    background_tasks.add_task(process_verification, video_url.url)
+    background_tasks.add_task(process_verification_from_url, video_url.url)
     
     return JSONResponse(
         content={"message": "Verification process started. Check /verification-status for updates."},
+        status_code=202
+    )
+
+@app.post("/verify-claim", response_model=VerificationResult)
+async def verify_claim(direct_claim: DirectClaim, background_tasks: BackgroundTasks):
+    global is_processing
+    
+    if is_processing:
+        raise HTTPException(status_code=400, detail="Another verification is already in progress")
+    
+    # Start the verification process with just the claim
+    background_tasks.add_task(process_verification_from_claim, direct_claim.claim)
+    
+    return JSONResponse(
+        content={"message": "Claim verification process started. Check /verification-status for updates."},
         status_code=202
     )
 
@@ -98,6 +118,13 @@ async def verification_status():
         return JSONResponse(
             content={"message": "No verification has been run yet"},
             status_code=404
+        )
+    
+    # If there was an error during processing
+    if current_verification.error:
+        return JSONResponse(
+            content={"error": current_verification.error},
+            status_code=400
         )
     
     # Prepare a simplified response with just two fields
@@ -134,7 +161,6 @@ async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dic
         
         # Get model and processor from app.state
         model = request.app.state.model
-        print(model)
         processor = request.app.state.processor
         
         # Rest of your code remains the same
@@ -160,11 +186,15 @@ async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dic
             # Map class index to label
             label = model.config.id2label[predicted_class]
             
+            if label=="Deepfake":
+                is_deepfake=True
+            else:
+                is_deepfake=False
             # Create structured response
             result = {
                 "prediction": label,
                 "confidence": round(confidence * 100, 2),
-                "is_deepfake": label.lower() == "fake",
+                "is_deepfake": is_deepfake,
                 "filename": file.filename
             }
             
@@ -173,7 +203,7 @@ async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dic
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing image: {str(e)}")
 
-async def process_verification(url: str):
+async def process_verification_from_url(url: str):
     global current_verification, is_processing
     
     is_processing = True
@@ -225,6 +255,36 @@ async def process_verification(url: str):
         current_verification.total_valid_ratings = result.get("total_valid_ratings")
     except Exception as e:
         print(f"Error in verification process: {e}")
+        current_verification.error = str(e)
+    finally:
+        is_processing = False
+
+async def process_verification_from_claim(claim: str):
+    global current_verification, is_processing
+    
+    is_processing = True
+    current_verification = VerificationResult()
+    
+    try:
+        # Set the claim directly
+        current_verification.claim = claim
+        
+        # Skip steps 1-3 and go directly to verification
+        # Step 4: Verify the claim
+        await process_claim(claim)
+        
+        # Step 5: Analyze the results
+        result = analyze_ratings()
+        
+        # Update the current verification with the results
+        current_verification.consensus = result.get("consensus")
+        current_verification.scientific_evidence = result.get("scientific_evidence")
+        current_verification.counter_claim = result.get("counter_claim")
+        current_verification.supporting_count = result.get("supporting_count")
+        current_verification.opposing_count = result.get("opposing_count")
+        current_verification.total_valid_ratings = result.get("total_valid_ratings")
+    except Exception as e:
+        print(f"Error in claim verification process: {e}")
         current_verification.error = str(e)
     finally:
         is_processing = False
