@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://bvajournals.onlinelibrary.wiley.com/doi/abs/10.1136/vr.104489",
-        "author": "Giada Morelli DVM",
-        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
-        "rating": 0,
-        "scientific_evidence": "The study analyzed 41 dog treats and provided information on their nutrient composition, but it did not specify that any of the treats contained 24% protein or that a specific packet contained 9.6 grams of protein.",
-        "counter_claim": "The evidence suggests that treat labeling often expresses ingredients in non-specific categories, and the study does not confirm the protein content claimed. Therefore, the claim about the specific protein percentage and amount in grams is unsupported.",
+        "url": "https://talcottlab.tamu.edu/wp-content/uploads/sites/108/2019/01/Beverages-Sans-the-Sugar.pdf",
+        "author": "",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
+        "rating": -1,
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]
