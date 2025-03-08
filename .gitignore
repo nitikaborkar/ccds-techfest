@@ -1,7 +1,7 @@
 venv
 .DS_Store
 __pycache__
-/Users/anantkabra/Documents/GitHub/ccds-techfest/backend/raw_content
-/Users/anantkabra/Documents/GitHub/ccds-techfest/backend/outputs
-/Users/anantkabra/Documents/GitHub/ccds-techfest/backend/downloads
-/Users/anantkabra/Documents/GitHub/ccds-techfest/backend/audio
+backend/raw_content
+backend/outputs
+backend/downloads
+backend/audio
