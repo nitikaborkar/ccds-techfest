@@ -160,11 +160,15 @@ async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dic
             # Map class index to label
             label = model.config.id2label[predicted_class]
             
+            if label=="Deepfake":
+                is_deepfake=True
+            else:
+                is_deepfake=False
             # Create structured response
             result = {
                 "prediction": label,
                 "confidence": round(confidence * 100, 2),
-                "is_deepfake": label.lower() == "fake",
+                "is_deepfake": is_deepfake,
                 "filename": file.filename
             }
             
