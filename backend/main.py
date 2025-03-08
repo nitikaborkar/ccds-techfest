@@ -1,11 +1,17 @@
 # main.py
 import os
 import uvicorn
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel
-from typing import Optional
+from typing import Optional, Dict
 from fastapi.middleware.cors import CORSMiddleware
+import torch
+from transformers import ViTForImageClassification, ViTImageProcessor
+from PIL import Image
+import io
+from contextlib import asynccontextmanager
+import requests
 
 
 # Import all the required modules
@@ -15,8 +21,28 @@ from claim_extract import ClaimExtractor
 from claim_verifier import process_claim
 from final_result import analyze_ratings
 
+model = None
+processor = None
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    try:
+        model = ViTForImageClassification.from_pretrained("prithivMLmods/Deepfake-Detection-Exp-02-22")
+        processor = ViTImageProcessor.from_pretrained("prithivMLmods/Deepfake-Detection-Exp-02-22")
+        app.state.model = model
+        app.state.processor = processor
+        print("Deepfake detection model loaded successfully")
+        yield
+    except Exception as e:
+        print(f"Error loading deepfake detection model: {e}")
+        yield
+    finally:
+        # Perform any necessary cleanup here
+        pass
+
 app = FastAPI(title="Claim Verification API", 
-              description="API for downloading videos, extracting claims, and verifying them")
+              description="API for downloading videos, extracting claims, and verifying them",
+              lifespan=lifespan)
 
 # Add CORS middleware to allow cross-origin requests
 app.add_middleware(
@@ -98,6 +124,54 @@ async def verification_status():
         response["evidence"] = "Insufficient evidence available"
     
     return response
+
+@app.post("/api/detect-deepfake/")
+async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dict:
+    try:
+        # Check if model is loaded - access from app.state
+        if not hasattr(request.app.state, "model") or not hasattr(request.app.state, "processor"):
+            raise HTTPException(status_code=500, detail="Deepfake detection model not loaded. Please try again later.")
+        
+        # Get model and processor from app.state
+        model = request.app.state.model
+        print(model)
+        processor = request.app.state.processor
+        
+        # Rest of your code remains the same
+        contents = await file.read()
+        if not contents:
+            raise HTTPException(status_code=400, detail="Empty file")
+            
+        image = Image.open(io.BytesIO(contents)).convert("RGB")
+        
+        # Process the image
+        inputs = processor(images=image, return_tensors="pt")
+        
+        # Perform inference
+        with torch.no_grad():
+            outputs = model(**inputs)
+            logits = outputs.logits
+            
+            # Get predicted class and probabilities
+            probabilities = torch.softmax(logits, dim=1)
+            predicted_class = torch.argmax(logits, dim=1).item()
+            confidence = probabilities[0][predicted_class].item()
+            
+            # Map class index to label
+            label = model.config.id2label[predicted_class]
+            
+            # Create structured response
+            result = {
+                "prediction": label,
+                "confidence": round(confidence * 100, 2),
+                "is_deepfake": label.lower() == "fake",
+                "filename": file.filename
+            }
+            
+            return result
+            
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error processing image: {str(e)}")
 
 async def process_verification(url: str):
     global current_verification, is_processing
