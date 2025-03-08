@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.ideals.illinois.edu/items/117262",
-        "author": "Traughber, Zachary T.",
-        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
-        "rating": -1,
-        "scientific_evidence": "The provided content does not mention any specific protein percentage or the amount of protein in grams in the dog food tested. The focus of the research is on evaluating various carbohydrate and fiber sources in canine diets, not on the protein content.",
-        "counter_claim": "Since the content does not provide any information regarding the protein content of the dog food, the claim cannot be supported or refuted based on the available evidence.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S000291652327971X",
+        "author": "Drewnowski Adam, Bellisle France",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
+        "rating": 4,
+        "scientific_evidence": "The article discusses the consumption of sugar-sweetened beverages and their link to obesity, noting that energy-containing liquids are less satiating than solid foods. However, it also mentions that sugar-containing liquids can lead to significant weight loss when consumed in place of usual meals, suggesting that the relationship between liquid sugar energy and body weight is complex and not solely dependent on caloric content.",
+        "counter_claim": "The evidence indicates that the effects of sugar consumption on body weight depend on behavioral intent, context, and the mode of use, which implies that simply replacing sugary drinks with zero-calorie alternatives may not guarantee weight management. The article raises questions about framing the issue purely in metabolic terms, suggesting that other factors play a significant role.",
         "error": false
     }
 ]

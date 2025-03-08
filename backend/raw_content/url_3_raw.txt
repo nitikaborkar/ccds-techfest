@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S0022316622166344",
-        "author": "Blanco Mejia Sonia et al.",
-        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
-        "rating": -1,
-        "scientific_evidence": "The content from the URL discusses a meta-analysis of studies on soy protein and its effects on cholesterol levels, but it does not provide any information regarding dog food or protein content in dog food.",
-        "counter_claim": "Since the URL does not contain any relevant information about dog food or its protein content, the claim cannot be evaluated.",
+        "url": "https://link.springer.com/chapter/10.1007/978-981-15-6663-9_4",
+        "author": "Priyanka Singh, Y. G. Ban, Lenika Kashyap, Archana Siraree, J. Singh",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
+        "rating": 4,
+        "scientific_evidence": "The content discusses the shift in consumer habits regarding sugar consumption and the rise of sugar substitutes due to health concerns, including obesity and diabetes. It mentions that the market for sugar substitutes is growing, particularly among diet-conscious individuals, which implies that replacing sugary drinks with alternatives is a trend. However, it does not provide direct evidence that this replacement leads to staying in shape.",
+        "counter_claim": "While replacing sugary drinks with zero-calorie alternatives may seem beneficial, the evidence does not conclusively support that such replacements lead to weight management or health benefits. The text highlights that the consumption patterns have changed, but it does not establish a direct link between diet sodas and effective weight control.",
         "error": false
     }
 ]

@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://nyaspubs.onlinelibrary.wiley.com/doi/abs/10.1111/nyas.12500",
-        "author": "Guoyao Wu, Jessica Fanzo, Dennis D. Miller, Prabhu Pingali, Mark Post, Jean L. Steiner, Anna E. Thalacker-Mercer",
-        "claim": "The dog food tested contains 24% protein, which equates to 9.6 grams of protein in the packet.",
+        "url": "https://www.sciencedirect.com/science/article/pii/S1530891X21011083",
+        "author": "",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
         "rating": -1,
-        "scientific_evidence": "The content does not provide any information regarding dog food or its protein content. It discusses the global protein supply chain and the nutritional needs of humans, particularly focusing on animal-source proteins and their importance in human diets.",
-        "counter_claim": "Since the URL content does not mention anything about dog food or specific protein percentages, the claim cannot be evaluated or supported based on the provided information.",
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]
