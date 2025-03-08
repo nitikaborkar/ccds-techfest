@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://talcottlab.tamu.edu/wp-content/uploads/sites/108/2019/01/Beverages-Sans-the-Sugar.pdf",
-        "author": "",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
+        "url": "https://books.google.com/books?hl=en&lr=&id=XYZnXwEIK-AC&oi=fnd&pg=PA91&dq=turmeric+cures+cancer&ots=0gZBMkgfbx&sig=FS9tQQ7MZmz2PDzghrTmRnBuooc",
+        "author": "Zigang Dong, Young-Joon Surh",
+        "claim": "turmeric cures cancer",
+        "rating": 3,
+        "scientific_evidence": "The content mentions turmeric in the context of dietary modulation and cancer but does not provide definitive evidence that turmeric cures cancer. It suggests potential benefits but does not confirm the claim as true.",
+        "counter_claim": "While turmeric may have properties that could be beneficial in cancer treatment, the evidence presented does not support the claim that it cures cancer outright. The lack of definitive scientific backing for the claim indicates that it should be approached with caution.",
         "error": false
     }
 ]

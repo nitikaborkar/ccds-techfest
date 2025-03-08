@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S000291652327971X",
-        "author": "Drewnowski Adam, Bellisle France",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
-        "rating": 4,
-        "scientific_evidence": "The article discusses the consumption of sugar-sweetened beverages and their link to obesity, noting that energy-containing liquids are less satiating than solid foods. However, it also mentions that sugar-containing liquids can lead to significant weight loss when consumed in place of usual meals, suggesting that the relationship between liquid sugar energy and body weight is complex and not solely dependent on caloric content.",
-        "counter_claim": "The evidence indicates that the effects of sugar consumption on body weight depend on behavioral intent, context, and the mode of use, which implies that simply replacing sugary drinks with zero-calorie alternatives may not guarantee weight management. The article raises questions about framing the issue purely in metabolic terms, suggesting that other factors play a significant role.",
+        "url": "https://www.frontiersin.org/articles/10.3389/fnut.2024.1399888/full",
+        "author": "Mihai Cozmin, Ionut Iulian Lungu, Cristian Gutu, Alina Stefanache, Letitia Doina Duceac, Bogdan Dorin \u0218oltuzu, Daniela Damir, Gabriela Calin, Elena Roxana Bogdan Goroftei, Carmen Grierosu, Monica Boev",
+        "claim": "turmeric cures cancer",
+        "rating": 6,
+        "scientific_evidence": "The review discusses the anti-cancer properties of curcumin, a major component of turmeric, highlighting its ability to inhibit cancer cell proliferation, induce apoptosis, and suppress metastasis through modulation of various signaling pathways. It cites numerous in vitro and in vivo studies demonstrating curcumin's potential as an anticancer agent.",
+        "counter_claim": "While curcumin shows promise in cancer prevention and treatment, the evidence does not support the claim that turmeric 'cures' cancer. The review emphasizes the need for further research to elucidate the mechanisms of action and evaluate clinical efficacy and safety, indicating that turmeric should not be viewed as a standalone cure for cancer.",
         "error": false
     }
 ]

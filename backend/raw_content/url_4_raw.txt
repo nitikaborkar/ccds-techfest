@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://koreascience.kr/article/JAKO202427843214674.page",
-        "author": "Jin Soo YOUK, Jin Hee KIM",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
-        "rating": 4,
-        "scientific_evidence": "The study indicates that the choice of zero-calorie beverages is influenced by health consciousness and social media dynamics, suggesting that while these drinks are perceived as healthier, they are also viewed as artificial products. This ambivalence reflects a complex relationship with health and identity, rather than a straightforward benefit of replacing sugary drinks with zero-calorie options.",
-        "counter_claim": "The evidence suggests that while zero-calorie beverages may be seen as a healthier alternative, they are also viewed with skepticism as artificial products. This indicates that simply replacing sugary drinks with zero-calorie alternatives may not lead to the expected health benefits, as consumers may still struggle with health perceptions and the implications of consuming artificial products.",
+        "url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=ba4e5d9228b8e9b04e29f986dcff3fabf831fd5e",
+        "author": "",
+        "claim": "turmeric cures cancer",
+        "rating": -1,
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]

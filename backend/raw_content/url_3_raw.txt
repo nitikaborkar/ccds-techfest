@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://link.springer.com/chapter/10.1007/978-981-15-6663-9_4",
-        "author": "Priyanka Singh, Y. G. Ban, Lenika Kashyap, Archana Siraree, J. Singh",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
-        "rating": 4,
-        "scientific_evidence": "The content discusses the shift in consumer habits regarding sugar consumption and the rise of sugar substitutes due to health concerns, including obesity and diabetes. It mentions that the market for sugar substitutes is growing, particularly among diet-conscious individuals, which implies that replacing sugary drinks with alternatives is a trend. However, it does not provide direct evidence that this replacement leads to staying in shape.",
-        "counter_claim": "While replacing sugary drinks with zero-calorie alternatives may seem beneficial, the evidence does not conclusively support that such replacements lead to weight management or health benefits. The text highlights that the consumption patterns have changed, but it does not establish a direct link between diet sodas and effective weight control.",
+        "url": "https://www.researchgate.net/profile/Debjit-Bhowmik-3/publication/268268687_Turmeric_A_Herbal_and_Traditional_Medicine/links/5552dedf08aeaaff3bf001f1/Turmeric-A-Herbal-and-Traditional-Medicine.pdf",
+        "author": "Debjit Bhowmik",
+        "claim": "turmeric cures cancer",
+        "rating": -1,
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]

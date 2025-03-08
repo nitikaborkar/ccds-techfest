@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S1530891X21011083",
-        "author": "",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives like diet soda can help you stay in shape.",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
+        "url": "https://www.mdpi.com/2218-273X/9/1/13",
+        "author": "Akhila Nair, Augustine Amalraj, Joby Jacob, Ajaikumar B. Kunnumakkara, Sreeraj Gopi",
+        "claim": "turmeric cures cancer",
+        "rating": 4,
+        "scientific_evidence": "The review discusses various non-curcuminoids from turmeric that exhibit anticancer properties, such as turmerones, elemene, and furanodiene. These compounds have shown potential in inhibiting cancer cell proliferation and inducing apoptosis in various cancer cell lines. However, it emphasizes that while these compounds have anticancer activities, they do not definitively state that turmeric as a whole cures cancer.",
+        "counter_claim": "The evidence suggests that while turmeric contains compounds with anticancer properties, it does not provide conclusive evidence that turmeric itself can cure cancer. The review highlights the need for further studies and clinical trials to establish the efficacy of these compounds in cancer treatment.",
         "error": false
     }
 ]
