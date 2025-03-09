@@ -1,5 +1,7 @@
 # main.py
 import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 import uvicorn
 from fastapi import FastAPI, HTTPException, BackgroundTasks, UploadFile, File, Request
 from fastapi.responses import JSONResponse
