@@ -381,7 +381,7 @@ const VerificationForm = ({ theme, onSubmit, onClose }) => {
                   <div className="progress-bar">
                     <div className="progress-fill" style={{ width: `${pollingProgress}%` }}></div>
                   </div>
-                  <p>Analyzing content... This may take up to 10 minutes</p>
+                  <p>Hang In there... Scanning the Truth for you</p>
                 </div>
               )}
             </div>

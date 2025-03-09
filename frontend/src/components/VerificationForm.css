@@ -266,6 +266,7 @@
   .submit-button.loading {
     position: relative;
     color: transparent;
+    bottom: 7px;
   }
   
   .submit-button.loading::after {
