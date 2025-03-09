@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Base URL for API requests
-const API_BASE_URL = 'http://localhost:8000';
+const API_BASE_URL = 'https://ccds-techfest.onrender.com';
 
 // Create axios instance with default config
 const apiClient = axios.create({
@@ -14,10 +14,7 @@ const apiClient = axios.create({
 // Function to verify video URL
 export const verifyVideoUrl = async (url) => {
   try {
-    // Start the verification process
     const response = await apiClient.post('/verify-video', { url });
-    
-    // Return just the initial response - the actual status checking will be done separately
     return {
       message: "Verification process started. This may take up to 10 minutes to complete.",
       jobStarted: true
@@ -42,10 +39,7 @@ export const checkVerificationStatus = async () => {
 // Function to verify text claim
 export const verifyTextClaim = async (claim) => {
   try {
-    // Call the actual backend endpoint for claim verification
     const response = await apiClient.post('/verify-claim', { claim });
-    
-    // Return just the initial response - the actual status checking will be done separately
     return {
       message: "Verification process started. This may take up to 10 minutes to complete.",
       jobStarted: true
@@ -62,7 +56,7 @@ export const detectDeepfake = async (file) => {
     const formData = new FormData();
     formData.append('file', file);
     
-    const response = await axios.post(`${API_BASE_URL}/api/detect-deepfake/`, formData, {
+    const response = await axios.post(`${API_BASE_URL}/detect-deepfake/`, formData, { // ✅ Fixed URL
       headers: {
         'Content-Type': 'multipart/form-data',
       },
