@@ -3,6 +3,9 @@ import VerificationForm from './VerificationForm';
 import EnlightenMe from './EnlightenMe';
 import GradientBackground from './GradientBackground';
 import './LandingPage.css';
+import { Link } from 'react-router-dom';
+// We're already importing AboutUs, so no change needed here
+import AboutUs from './AboutUs';
 
 const LandingPage = () => {
     const [theme, setTheme] = useState('dark');
@@ -32,12 +35,13 @@ const LandingPage = () => {
                     <span className="logo-text">MedBuster</span>
                 </div>
                 <nav className="main-nav">
-                    {/* <ul>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#pricing">Pricing</a></li>
-            <li><a href="#resources">Resources</a></li>
-          </ul> */}
+                    <ul>
+                        {/* <li><Link to="/about">About Us</Link></li> */}
+                        {/* You can uncomment and add more navigation links as needed */}
+                        {/* <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                        <li><a href="#resources">Resources</a></li> */}
+                    </ul>
                 </nav>
                 <div className="header-actions">
                     <a
@@ -78,8 +82,8 @@ const LandingPage = () => {
                         in an era of uncertainty.
                     </p>
                     <div className="cta-container">
-                        <button className="cta-button" onClick={handleStartNow}>Enlighten →</button>
-                        <a href="#learn-more" className="learn-more">Learn more</a>
+                        <button className="cta-button" onClick={handleStartNow}>Enlighten me →</button>
+                        <Link to="/about" className="learn-more">About Us</Link>
                     </div>
                 </div>
 
