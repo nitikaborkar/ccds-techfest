@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import VerificationForm from './VerificationForm';
-import FullPageForm from './FullPageForm';
+import EnlightenMe from './EnlightenMe';
 import GradientBackground from './GradientBackground';
 import './LandingPage.css';
 
 const LandingPage = () => {
     const [theme, setTheme] = useState('dark');
-    const [showFullPageForm, setShowFullPageForm] = useState(false);
+    const [showEnlightenMe, setShowEnlightenMe] = useState(false);
 
     const toggleTheme = () => {
         const newTheme = theme === 'dark' ? 'light' : 'dark';
@@ -16,11 +16,11 @@ const LandingPage = () => {
     };
 
     const handleStartNow = () => {
-        setShowFullPageForm(true);
+        setShowEnlightenMe(true);
     };
 
     const handleCloseFullPageForm = () => {
-        setShowFullPageForm(false);
+        setShowEnlightenMe(false);
     };
 
     return (
@@ -78,7 +78,7 @@ const LandingPage = () => {
                         in an era of uncertainty.
                     </p>
                     <div className="cta-container">
-                        <button className="cta-button" onClick={handleStartNow}>Enlighten me →</button>
+                        <button className="cta-button" onClick={handleStartNow}>Enlighten →</button>
                         <a href="#learn-more" className="learn-more">Learn more</a>
                     </div>
                 </div>
@@ -90,8 +90,8 @@ const LandingPage = () => {
                 </div>
             </main>
 
-            {showFullPageForm && (
-                <FullPageForm theme={theme} onClose={handleCloseFullPageForm} />
+            {showEnlightenMe && (
+                <EnlightenMe theme={theme} onClose={handleCloseFullPageForm} />
             )}
         </div>
     );
