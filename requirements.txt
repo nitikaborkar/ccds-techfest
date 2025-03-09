@@ -91,7 +91,7 @@ multidict==6.1.0
 namex==0.0.8
 networkx==3.4.2
 nltk==3.9.1
-numpy==2.2.3
+numpy
 ollama==0.4.7
 openai==1.65.4
 opt_einsum==3.4.0
