@@ -1,8 +1,8 @@
 [
     {
-        "url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=ba4e5d9228b8e9b04e29f986dcff3fabf831fd5e",
+        "url": "https://www.sciencedirect.com/science/article/pii/S0278691511005643",
         "author": "",
-        "claim": "turmeric cures cancer",
+        "claim": "lemons causes cancer",
         "rating": -1,
         "scientific_evidence": "",
         "counter_claim": "",

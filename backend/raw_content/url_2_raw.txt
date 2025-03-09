@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.frontiersin.org/articles/10.3389/fnut.2024.1399888/full",
-        "author": "Mihai Cozmin, Ionut Iulian Lungu, Cristian Gutu, Alina Stefanache, Letitia Doina Duceac, Bogdan Dorin \u0218oltuzu, Daniela Damir, Gabriela Calin, Elena Roxana Bogdan Goroftei, Carmen Grierosu, Monica Boev",
-        "claim": "turmeric cures cancer",
-        "rating": 6,
-        "scientific_evidence": "The review discusses the anti-cancer properties of curcumin, a major component of turmeric, highlighting its ability to inhibit cancer cell proliferation, induce apoptosis, and suppress metastasis through modulation of various signaling pathways. It cites numerous in vitro and in vivo studies demonstrating curcumin's potential as an anticancer agent.",
-        "counter_claim": "While curcumin shows promise in cancer prevention and treatment, the evidence does not support the claim that turmeric 'cures' cancer. The review emphasizes the need for further research to elucidate the mechanisms of action and evaluate clinical efficacy and safety, indicating that turmeric should not be viewed as a standalone cure for cancer.",
+        "url": "https://odontoanamaria.com/artigos/limao1.pdf",
+        "author": "Unknown",
+        "claim": "lemons causes cancer",
+        "rating": -1,
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]

@@ -1,11 +1,10 @@
 [
     {
-        "url": "https://www.researchgate.net/profile/Debjit-Bhowmik-3/publication/268268687_Turmeric_A_Herbal_and_Traditional_Medicine/links/5552dedf08aeaaff3bf001f1/Turmeric-A-Herbal-and-Traditional-Medicine.pdf",
-        "author": "Debjit Bhowmik",
-        "claim": "turmeric cures cancer",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
-        "error": false
+        "url": "https://www.thelancet.com/journals/lanonc/article/PIIS1470-20451730186-9/fulltext",
+        "author": "Dr Eva Steliarova-Foucher, PhD",
+        "claim": "lemons causes cancer",
+        "rating": 0,
+        "scientific_evidence": "The content of the article discusses the incidence of childhood cancer and does not mention lemons or any evidence linking them to cancer. It focuses on cancer statistics, types, and geographical variations in childhood cancer incidence.",
+        "counter_claim": "The claim that lemons cause cancer is not supported by any evidence in the provided content. The article emphasizes the importance of accurate cancer data and does not provide any information on dietary factors or specific foods, such as lemons, being linked to cancer."
     }
 ]

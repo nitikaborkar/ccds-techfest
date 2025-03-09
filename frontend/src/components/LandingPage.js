@@ -5,11 +5,11 @@ import GradientBackground from './GradientBackground';
 import './LandingPage.css';
 
 const LandingPage = () => {
-  const [theme, setTheme] = useState('light');
+  const [theme, setTheme] = useState('dark');
   const [showFullPageForm, setShowFullPageForm] = useState(false);
 
   const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     // Also update the document theme for global styles
     document.documentElement.className = newTheme;

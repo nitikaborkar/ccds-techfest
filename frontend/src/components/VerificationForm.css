@@ -66,8 +66,8 @@
   
   .tab svg {
     stroke: currentColor;
-    width: 18px;
-    height: 18px;
+    width: 22px;         /* Increase from 18px */
+    height: 22px;  
   }
   
   /* Error message styling */
@@ -91,6 +91,9 @@
   }
   
   .form-group label {
+    margin-left: 8px;
+    margin-top: 8px;
+    text-align: center;
     display: block;
     font-size: 0.9rem;
     font-weight: var(--font-weight-semibold);
@@ -201,7 +204,7 @@
   
   .preview-image {
     max-width: 100%;
-    max-height: 150px;
+    max-height: 200px;   
     object-fit: contain;
     border-radius: 6px;
     margin-bottom: 10px;
@@ -225,13 +228,14 @@
   }
   
   .submit-button {
-    width: 90%;
-    padding: 14px 20px;
+    width: 70%;  
+    max-width: 500px;    /* Add max-width */
+    padding: 18px 24px;  /* Increase from 14px 20px */
     background: linear-gradient(90deg, var(--accent-color), var(--accent-color-hover));
     color: var(--button-text);
     border: none;
     border-radius: 30px;
-    font-size: 0.95rem;
+    font-size: 1.1rem;   
     font-weight: var(--font-weight-semibold);
     cursor: pointer;
     transition: all 0.2s ease;
@@ -328,7 +332,7 @@
   /* Responsive adjustments for smaller containers */
   @media (max-width: 400px) {
     .verification-form-wrapper {
-      padding: 20px;
+      padding: 10px;
     }
     
     .form-header h2 {

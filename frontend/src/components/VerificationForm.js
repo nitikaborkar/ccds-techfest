@@ -1,6 +1,6 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { verifyVideoUrl, verifyTextClaim, detectDeepfake } from '../utils/api';
+import { verifyVideoUrl, verifyTextClaim, detectDeepfake, checkVerificationStatus } from '../utils/api';
 import './VerificationForm.css';
 
 const VerificationForm = ({ theme, onSubmit }) => {
@@ -8,15 +8,87 @@ const VerificationForm = ({ theme, onSubmit }) => {
   const [videoUrl, setVideoUrl] = useState('');
   const [textClaim, setTextClaim] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isPolling, setIsPolling] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [errorMessage, setErrorMessage] = useState('');
+  const [pollingProgress, setPollingProgress] = useState(0);
+  const [verificationResult, setVerificationResult] = useState(null);
+  const pollingIntervalRef = useRef(null);
   const fileInputRef = useRef(null);
+  const MAX_POLLING_TIME = 10 * 60 * 1000; // 10 minutes in milliseconds
+  const POLLING_INTERVAL = 5000; // 5 seconds
+
+  // Cleanup polling on unmount
+  useEffect(() => {
+    return () => {
+      if (pollingIntervalRef.current) {
+        clearInterval(pollingIntervalRef.current);
+      }
+    };
+  }, []);
+
+  const startPolling = () => {
+    setIsPolling(true);
+    setPollingProgress(0);
+    
+    const startTime = Date.now();
+    
+    // Clear any existing interval
+    if (pollingIntervalRef.current) {
+      clearInterval(pollingIntervalRef.current);
+    }
+    
+    pollingIntervalRef.current = setInterval(async () => {
+      try {
+        // Check status from the backend
+        const response = await checkVerificationStatus();
+        
+        // Calculate how far along we are in the maximum polling time
+        const elapsedTime = Date.now() - startTime;
+        const progressPercentage = Math.min((elapsedTime / MAX_POLLING_TIME) * 100, 99);
+        setPollingProgress(progressPercentage);
+        
+        // If we have a result with consensus, polling is complete
+        if (response && response.consensus) {
+          clearInterval(pollingIntervalRef.current);
+          setIsPolling(false);
+          setIsSubmitting(false);
+          setPollingProgress(100);
+          setVerificationResult(response);
+          setIsSuccess(true);
+          
+          // Call the parent's onSubmit if provided
+          if (onSubmit) {
+            const formData = {
+              type: activeTab,
+              content: activeTab === 'video' ? videoUrl : 
+                      activeTab === 'text' ? textClaim : 
+                      selectedImage
+            };
+            onSubmit(formData, response);
+          }
+        }
+        
+        // If we've reached the maximum polling time, stop polling
+        if (elapsedTime >= MAX_POLLING_TIME) {
+          clearInterval(pollingIntervalRef.current);
+          setIsPolling(false);
+          setIsSubmitting(false);
+          setErrorMessage('Verification is taking longer than expected. Please check back later.');
+        }
+      } catch (error) {
+        console.error('Error while polling:', error);
+        // Don't stop polling on individual errors - the process might still be running
+      }
+    }, POLLING_INTERVAL);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setErrorMessage('');
+    setVerificationResult(null);
     
     try {
       let response;
@@ -27,30 +99,32 @@ const VerificationForm = ({ theme, onSubmit }) => {
       } else if (activeTab === 'text') {
         response = await verifyTextClaim(textClaim);
       } else if (activeTab === 'image' && selectedImage) {
+        // For image verification (deepfake detection), we get an immediate response
         response = await detectDeepfake(selectedImage);
+        
+        // Handle immediate response for deepfake detection
+        setIsSubmitting(false);
+        setIsSuccess(true);
+        setVerificationResult(response);
+        setTimeout(() => setIsSuccess(false), 3000);
+        
+        // Call parent's onSubmit if provided
+        if (onSubmit) {
+          const formData = { type: 'image', content: selectedImage };
+          onSubmit(formData, response);
+        }
+        
+        return; // Don't start polling for image verification
       } else {
         throw new Error('Please select an image to analyze');
       }
       
-      // Show success message briefly
-      setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 3000);
+      // Start polling for video and text verification results
+      startPolling();
       
-      // If parent provided an onSubmit handler, call it with the form data and response
-      if (onSubmit) {
-        const formData = {
-          type: activeTab,
-          content: activeTab === 'video' ? videoUrl : 
-                   activeTab === 'text' ? textClaim : 
-                   selectedImage
-        };
-        
-        onSubmit(formData, response);
-      }
     } catch (error) {
       console.error('Submission error:', error);
       setErrorMessage(error.message || 'An error occurred. Please try again.');
-    } finally {
       setIsSubmitting(false);
     }
   };
@@ -173,14 +247,23 @@ const VerificationForm = ({ theme, onSubmit }) => {
               <button 
                 type="submit" 
                 className={`submit-button ${isSubmitting ? 'loading' : ''}`}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isPolling}
               >
-                {isSubmitting ? 'Processing...' : 'Verify Video'}
+                {isSubmitting || isPolling ? 'Processing...' : 'Verify Video'}
               </button>
+              
+              {isPolling && (
+                <div className="polling-status">
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${pollingProgress}%` }}></div>
+                  </div>
+                  <p>Analyzing content... This may take up to 10 minutes</p>
+                </div>
+              )}
               
               {isSuccess && (
                 <div className="success-message">
-                  Verification request submitted!
+                  Verification complete!
                 </div>
               )}
             </div>
@@ -206,14 +289,23 @@ const VerificationForm = ({ theme, onSubmit }) => {
               <button 
                 type="submit" 
                 className={`submit-button ${isSubmitting ? 'loading' : ''}`}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isPolling}
               >
-                {isSubmitting ? 'Processing...' : 'Verify Claim'}
+                {isSubmitting || isPolling ? 'Processing...' : 'Verify Claim'}
               </button>
+              
+              {isPolling && (
+                <div className="polling-status">
+                  <div className="progress-bar">
+                    <div className="progress-fill" style={{ width: `${pollingProgress}%` }}></div>
+                  </div>
+                  <p>Analyzing claim... This may take up to 10 minutes</p>
+                </div>
+              )}
               
               {isSuccess && (
                 <div className="success-message">
-                  Verification request submitted!
+                  Verification complete!
                 </div>
               )}
             </div>
@@ -270,15 +362,32 @@ const VerificationForm = ({ theme, onSubmit }) => {
                 {isSubmitting ? 'Processing...' : 'Check Image'}
               </button>
               
-              {isSuccess && (
+              {isSuccess && verificationResult && (
                 <div className="success-message">
-                  Image uploaded successfully!
+                  {verificationResult.is_deepfake ? 
+                    `Deepfake detected (${verificationResult.confidence}% confidence)` : 
+                    `Authentic image (${verificationResult.confidence}% confidence)`}
                 </div>
               )}
             </div>
           </form>
         )}
       </motion.div>
+      
+      {/* Display verification results if available */}
+      {verificationResult && (activeTab === 'video' || activeTab === 'text') && (
+        <div className="verification-results">
+          <h3>Verification Results</h3>
+          <div className="result-card">
+            <div className={`consensus-badge ${verificationResult.consensus?.toLowerCase()}`}>
+              {verificationResult.consensus === "True" ? "Verified" : 
+               verificationResult.consensus === "False" ? "Debunked" : 
+               "Inconclusive"}
+            </div>
+            <p className="evidence">{verificationResult.evidence}</p>
+          </div>
+        </div>
+      )}
       
       <div className="form-help">
         <p>Need help? <a href="#contact">Contact us</a></p>

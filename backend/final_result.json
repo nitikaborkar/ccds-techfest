@@ -1,8 +1,8 @@
 {
     "consensus": "False",
     "scientific_evidence": "N/A",
-    "counter_claim": "The evidence suggests that while turmeric contains compounds with anticancer properties, it does not provide conclusive evidence that turmeric itself can cure cancer. The review highlights the need for further studies and clinical trials to establish the efficacy of these compounds in cancer treatment.\n\nWhile turmeric may have properties that could be beneficial in cancer treatment, the evidence presented does not support the claim that it cures cancer outright. The lack of definitive scientific backing for the claim indicates that it should be approached with caution.",
-    "supporting_count": 1,
-    "opposing_count": 2,
-    "total_valid_ratings": 3
+    "counter_claim": "The claim that lemons cause cancer is not supported by any evidence in the provided content. The article emphasizes the importance of accurate cancer data and does not provide any information on dietary factors or specific foods, such as lemons, being linked to cancer.",
+    "supporting_count": 0,
+    "opposing_count": 1,
+    "total_valid_ratings": 1
 }
