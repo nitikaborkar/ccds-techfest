@@ -45,8 +45,6 @@ fsspec==2025.2.0
 gast==0.6.0
 google-pasta==0.2.0
 google_search_results==2.4.2
-gradio==5.20.1
-gradio_client==1.7.2
 greenlet==3.1.1
 groovy==0.1.2
 grpcio==1.70.0
