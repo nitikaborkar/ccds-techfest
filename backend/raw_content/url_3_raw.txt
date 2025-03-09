@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S000291652327971X",
-        "author": "Drewnowski Adam, Bellisle France",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
-        "rating": 4,
-        "scientific_evidence": "The article discusses the consumption of sugar-sweetened beverages and their link to obesity, noting that energy-containing liquids are less satiating than solid foods. However, it also mentions that numerous clinical studies have shown that sugar-containing liquids can lead to significant and sustained weight loss when consumed in place of usual meals. This suggests that the relationship between liquid sugar energy and body weight is complex and not solely dependent on caloric content.",
-        "counter_claim": "The evidence indicates that simply replacing sugary drinks with zero-calorie alternatives may not guarantee weight management success, as the effects of sugar consumption on body weight can depend on behavioral intent, context, and the mode of use. Therefore, the claim is not fully supported by the evidence presented.",
+        "url": "https://citeseerx.ist.psu.edu/document?repid=rep1&type=pdf&doi=ba4e5d9228b8e9b04e29f986dcff3fabf831fd5e",
+        "author": "",
+        "claim": "turmeric causes cancer",
+        "rating": -1,
+        "scientific_evidence": "",
+        "counter_claim": "",
         "error": false
     }
 ]

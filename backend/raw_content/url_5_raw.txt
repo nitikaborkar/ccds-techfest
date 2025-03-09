@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://koreascience.kr/article/JAKO202427843214674.page",
-        "author": "Jin Soo YOUK, Jin Hee KIM",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
-        "rating": 4,
-        "scientific_evidence": "The study indicates that the choice of zero-calorie beverages is influenced by health consciousness and social media dynamics, but it also highlights a nuanced view where participants see these drinks as both a 'healthy alternative' and an 'artificial product.' This ambivalence suggests that while zero-calorie beverages may be perceived as beneficial, there are concerns about their artificial nature and potential health implications.",
-        "counter_claim": "The evidence suggests that the consumption of zero-calorie beverages may not straightforwardly lead to weight management, as participants express ambivalence about these products, viewing them as both beneficial and potentially harmful. This indicates that simply replacing sugary drinks with zero-calorie alternatives may not be sufficient for effective weight management.",
+        "url": "https://www.mdpi.com/2218-273X/9/1/13",
+        "author": "Akhila Nair, Augustine Amalraj, Joby Jacob, Ajaikumar B. Kunnumakkara, Sreeraj Gopi",
+        "claim": "turmeric causes cancer",
+        "rating": 0,
+        "scientific_evidence": "The review discusses various bioactive compounds in turmeric, particularly curcuminoids and non-curcuminoids, and their potential anticancer properties. It highlights that curcuminoids have been extensively studied for their anticancer activities, while non-curcuminoids also exhibit significant anticancer effects. The evidence presented indicates that turmeric and its components are being researched for their therapeutic potential against cancer, rather than causing it.",
+        "counter_claim": "The evidence contradicts the claim that turmeric causes cancer, as it emphasizes the anticancer properties of turmeric's bioactive compounds. The review suggests that turmeric has been used in traditional medicine for its health benefits, including cancer prevention, rather than being associated with cancer causation.",
         "error": false
     }
 ]

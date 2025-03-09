@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S0195666388800539",
-        "author": "",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
+        "url": "https://www.mdpi.com/2072-6643/11/10/2376",
+        "author": "Antonio Giordano, Giuseppina Tommonaro",
+        "claim": "turmeric causes cancer",
+        "rating": 0,
+        "scientific_evidence": "The review discusses curcumin, a polyphenol extracted from turmeric, and its potential anticancer properties. It highlights that curcumin has been reported to modulate various cell signaling pathways involved in cancer development and proliferation, suggesting that it may have protective effects against cancer rather than causing it.",
+        "counter_claim": "The evidence presented in the review indicates that curcumin, derived from turmeric, exhibits anticancer properties by targeting multiple pathways involved in cancer progression. This contradicts the claim that turmeric causes cancer, as the focus is on its potential benefits in cancer prevention and treatment.",
         "error": false
     }
 ]

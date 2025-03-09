@@ -1,6 +1,9 @@
 import openai
 import os
 import json
+from dotenv import load_dotenv
+
+load_dotenv(override=True)
 
 class ClaimExtractor:
     def __init__(self, api_key=None, model="gpt-4o-mini"):

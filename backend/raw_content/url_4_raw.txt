@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://cdr.lib.unc.edu/concern/honors_theses/w0892f77m",
-        "author": "Sahil Vasa",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
-        "rating": 6,
-        "scientific_evidence": "The study found that replacing caloric beverages with non-caloric beverages resulted in significant weight loss, particularly among males. However, it also noted that high soda consumers did not show more weight loss than low soda consumers, indicating that simply switching to diet soda may not guarantee weight loss success for everyone.",
-        "counter_claim": "While the evidence supports that replacing caloric beverages can lead to weight loss, it also suggests that not all individuals, particularly high soda consumers, experience the same benefits from switching to diet alternatives. This indicates that the effectiveness of diet soda for weight management may vary among individuals.",
+        "url": "https://journal.waocp.org/article_26033.html",
+        "author": "Asian Pacific Journal of Cancer Prevention",
+        "claim": "turmeric causes cancer",
+        "rating": 0,
+        "scientific_evidence": "The article discusses turmeric and its active component, curcumin, which has been studied for its potential therapeutic effects against chronic diseases, including cancer. It highlights that there is little epidemiologic information on the effects of turmeric consumption, suggesting that turmeric may help alleviate disease burden through prevention rather than causing cancer.",
+        "counter_claim": "The evidence presented in the article indicates that turmeric, particularly curcumin, is being researched for its potential benefits in cancer therapy, rather than being associated with causing cancer. This contradicts the claim that turmeric causes cancer.",
         "error": false
     }
 ]

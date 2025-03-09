@@ -12,7 +12,7 @@ class TranscriptExtractor:
             api_key (str, optional): OpenAI API key. If None, tries to load from environment
         """
         # Load environment variables
-        load_dotenv()
+        load_dotenv(override=True)
         
         # Set API key (prioritize passed key, then env variable)
         self.api_key = os.getenv("OPENAI_API_KEY")

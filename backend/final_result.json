@@ -1,8 +1,8 @@
 {
     "consensus": "False",
     "scientific_evidence": "N/A",
-    "counter_claim": "The evidence suggests that the consumption of zero-calorie beverages may not straightforwardly lead to weight management, as participants express ambivalence about these products, viewing them as both beneficial and potentially harmful. This indicates that simply replacing sugary drinks with zero-calorie alternatives may not be sufficient for effective weight management.\n\nThe evidence indicates that simply replacing sugary drinks with zero-calorie alternatives may not guarantee weight management success, as the effects of sugar consumption on body weight can depend on behavioral intent, context, and the mode of use. Therefore, the claim is not fully supported by the evidence presented.",
-    "supporting_count": 1,
-    "opposing_count": 2,
+    "counter_claim": "The evidence presented in the article indicates that turmeric, particularly curcumin, is being researched for its potential benefits in cancer therapy, rather than being associated with causing cancer. This contradicts the claim that turmeric causes cancer.\n\nThe evidence contradicts the claim that turmeric causes cancer, as it emphasizes the anticancer properties of turmeric's bioactive compounds. The review suggests that turmeric has been used in traditional medicine for its health benefits, including cancer prevention, rather than being associated with cancer causation.\n\nThe evidence presented in the review indicates that curcumin, derived from turmeric, exhibits anticancer properties by targeting multiple pathways involved in cancer progression. This contradicts the claim that turmeric causes cancer, as the focus is on its potential benefits in cancer prevention and treatment.",
+    "supporting_count": 0,
+    "opposing_count": 3,
     "total_valid_ratings": 3
 }

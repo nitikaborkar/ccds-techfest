@@ -1,8 +1,8 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S1530891X21011083",
+        "url": "https://www.jbuon.com/archive/21-5-1050.pdf",
         "author": "",
-        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
+        "claim": "turmeric causes cancer",
         "rating": -1,
         "scientific_evidence": "",
         "counter_claim": "",

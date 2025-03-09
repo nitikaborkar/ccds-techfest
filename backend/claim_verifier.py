@@ -10,7 +10,9 @@ from unicode_utils import SYMBOLS, safe_print
 from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode
 from crawl4ai.extraction_strategy import LLMExtractionStrategy
 from pydantic import BaseModel
+from dotenv import load_dotenv
 
+load_dotenv(override=True)
 # OpenAI API Key (Replace with a secure method)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 

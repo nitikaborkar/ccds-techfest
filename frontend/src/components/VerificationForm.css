@@ -376,14 +376,16 @@
 
 /* Add these new styles for the result page */
 .verification-result-page {
-    background-color: var(--card-bg, #fff);
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    padding: 2rem;
-    width: 100%;
-    max-width: 700px;
-    margin: 0 auto;
-    position: relative;
+  width: 100%;
+  padding: 28px;
+  background-color: var(--card-background);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  box-sizing: border-box;
+  margin-bottom: 0;
+  overflow: hidden;
+  margin: auto;
   }
   
   .result-header {
