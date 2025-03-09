@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S0002822396002738",
-        "author": "",
-        "claim": "lemons causes cancer",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
+        "url": "https://koreascience.kr/article/JAKO202427843214674.page",
+        "author": "Jin Soo YOUK, Jin Hee KIM",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
+        "rating": 4,
+        "scientific_evidence": "The study indicates that the choice of zero-calorie beverages is influenced by health consciousness and social media dynamics, but it also highlights a nuanced view where participants see these drinks as both a 'healthy alternative' and an 'artificial product.' This ambivalence suggests that while zero-calorie beverages may be perceived as beneficial, there are concerns about their artificial nature and potential health implications.",
+        "counter_claim": "The evidence suggests that the consumption of zero-calorie beverages may not straightforwardly lead to weight management, as participants express ambivalence about these products, viewing them as both beneficial and potentially harmful. This indicates that simply replacing sugary drinks with zero-calorie alternatives may not be sufficient for effective weight management.",
         "error": false
     }
 ]

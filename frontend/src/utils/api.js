@@ -75,8 +75,19 @@ export const detectDeepfake = async (file) => {
   }
 };
 
+export const getRandomMyth = async () => {
+  try {
+    const response = await apiClient.get('/get-myth');
+    return response.data.myth;
+  } catch (error) {
+    console.error('Error fetching myth:', error);
+    throw new Error(error.response?.data?.detail || 'Failed to fetch myth. Please try again later.');
+  }
+};
+
 export default {
   verifyVideoUrl,
   verifyTextClaim,
   detectDeepfake,
+  getRandomMyth, // ✅ New function added here
 };

@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { verifyVideoUrl, verifyTextClaim, detectDeepfake, checkVerificationStatus } from '../utils/api';
+import SvgStampAnimation from './SvgStampAnimation';
 import './VerificationForm.css';
 
-const VerificationForm = ({ theme, onSubmit }) => {
+const VerificationForm = ({ theme, onSubmit, onClose }) => {
   const [activeTab, setActiveTab] = useState('video');
   const [videoUrl, setVideoUrl] = useState('');
   const [textClaim, setTextClaim] = useState('');
@@ -14,6 +15,8 @@ const VerificationForm = ({ theme, onSubmit }) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [pollingProgress, setPollingProgress] = useState(0);
   const [verificationResult, setVerificationResult] = useState(null);
+  const [showResultPage, setShowResultPage] = useState(false);
+  const [submittedContent, setSubmittedContent] = useState(null);
   const pollingIntervalRef = useRef(null);
   const fileInputRef = useRef(null);
   const MAX_POLLING_TIME = 10 * 60 * 1000; // 10 minutes in milliseconds
@@ -58,6 +61,9 @@ const VerificationForm = ({ theme, onSubmit }) => {
           setVerificationResult(response);
           setIsSuccess(true);
           
+          // Show the result page
+          setShowResultPage(true);
+          
           // Call the parent's onSubmit if provided
           if (onSubmit) {
             const formData = {
@@ -66,6 +72,7 @@ const VerificationForm = ({ theme, onSubmit }) => {
                       activeTab === 'text' ? textClaim : 
                       selectedImage
             };
+            setSubmittedContent(formData);
             onSubmit(formData, response);
           }
         }
@@ -92,13 +99,17 @@ const VerificationForm = ({ theme, onSubmit }) => {
     
     try {
       let response;
+      let formData;
       
-      // Handle different verification methods
+      // Store the submitted content for display on the result page
       if (activeTab === 'video') {
+        formData = { type: 'video', content: videoUrl };
         response = await verifyVideoUrl(videoUrl);
       } else if (activeTab === 'text') {
+        formData = { type: 'text', content: textClaim };
         response = await verifyTextClaim(textClaim);
       } else if (activeTab === 'image' && selectedImage) {
+        formData = { type: 'image', content: selectedImage };
         // For image verification (deepfake detection), we get an immediate response
         response = await detectDeepfake(selectedImage);
         
@@ -106,11 +117,11 @@ const VerificationForm = ({ theme, onSubmit }) => {
         setIsSubmitting(false);
         setIsSuccess(true);
         setVerificationResult(response);
-        setTimeout(() => setIsSuccess(false), 3000);
+        setSubmittedContent(formData);
+        setShowResultPage(true);
         
         // Call parent's onSubmit if provided
         if (onSubmit) {
-          const formData = { type: 'image', content: selectedImage };
           onSubmit(formData, response);
         }
         
@@ -118,6 +129,8 @@ const VerificationForm = ({ theme, onSubmit }) => {
       } else {
         throw new Error('Please select an image to analyze');
       }
+      
+      setSubmittedContent(formData);
       
       // Start polling for video and text verification results
       startPolling();
@@ -170,6 +183,117 @@ const VerificationForm = ({ theme, onSubmit }) => {
     }
   };
 
+  const handleBackToForm = () => {
+    setShowResultPage(false);
+    setVerificationResult(null);
+    setIsSuccess(false);
+  };
+
+  const handleStampAnimationComplete = () => {
+    // You can add additional logic here if needed after the stamp animation completes
+    console.log("Stamp animation completed");
+  };
+
+  // Render the result page
+  if (showResultPage && verificationResult) {
+    const isDeepfakeResult = activeTab === 'image';
+    const consensusResult = isDeepfakeResult 
+      ? (verificationResult.is_deepfake ? 'False' : 'True') 
+      : verificationResult.consensus;
+
+    return (
+      <div className="verification-result-page">
+        <div className="result-header">
+          {/* <button onClick={handleBackToForm} className="back-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Back
+          </button> */}
+          <h2>Verification Results</h2>
+        </div>
+        
+        {/* Display the submitted content */}
+        <div className="submitted-content">
+          <h3>Submitted {submittedContent?.type}</h3>
+          {submittedContent?.type === 'video' && (
+            <div className="content-preview">
+              <p className="content-url">{submittedContent.content}</p>
+            </div>
+          )}
+          {submittedContent?.type === 'text' && (
+            <div className="content-preview">
+              <p className="content-text">"{submittedContent.content}"</p>
+            </div>
+          )}
+          {submittedContent?.type === 'image' && submittedContent.content && (
+            <div className="content-preview">
+              <img 
+                src={URL.createObjectURL(submittedContent.content)} 
+                alt="Verified content" 
+                className="content-image"
+              />
+            </div>
+          )}
+        </div>
+        
+        {/* Stamp Animation */}
+        <SvgStampAnimation 
+          result={consensusResult} 
+          onComplete={handleStampAnimationComplete} 
+        />
+        
+        {/* Result Card */}
+        <div className="result-card-large">
+          <div className={`consensus-badge-large ${consensusResult?.toLowerCase()}`}>
+            {consensusResult === "True" ? "Verified" : 
+             consensusResult === "False" ? "Debunked" : 
+             "Inconclusive"}
+          </div>
+          
+          {isDeepfakeResult ? (
+            <div className="result-details">
+              <h4>Analysis Results:</h4>
+              <p className="confidence">
+                {verificationResult.is_deepfake ? 
+                  `Deepfake detected with ${verificationResult.confidence}% confidence` : 
+                  `Authentic image with ${verificationResult.confidence}% confidence`}
+              </p>
+            </div>
+          ) : (
+            <div className="result-details">
+              <h4>Evidence:</h4>
+              <p className="evidence">{verificationResult.evidence}</p>
+            </div>
+          )}
+        </div>
+        
+        {/* Action buttons */}
+        <div className="result-actions">
+        <button onClick={handleBackToForm} className="back-button">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Try Another
+          </button>
+          {/* <button className="action-button share">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8.59 13.51L15.42 17.49M15.41 6.51L8.59 10.49M21 5C21 6.65685 19.6569 8 18 8C16.3431 8 15 6.65685 15 5C15 3.34315 16.3431 2 18 2C19.6569 2 21 3.34315 21 5ZM9 12C9 13.6569 7.65685 15 6 15C4.34315 15 3 13.6569 3 12C3 10.3431 4.34315 9 6 9C7.65685 9 9 10.3431 9 12ZM21 19C21 20.6569 19.6569 22 18 22C16.3431 22 15 20.6569 15 19C15 17.3431 16.3431 16 18 16C19.6569 16 21 17.3431 21 19Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Share Result
+          </button>
+          <button className="action-button download">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 16L4 17C4 18.6569 5.34315 20 7 20L17 20C18.6569 20 20 18.6569 20 17L20 16M16 12L12 16M12 16L8 12M12 16L12 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Download Report
+          </button> */}
+        </div>
+      </div>
+    );
+  }
+
+  // Render the form page (original form)
   return (
     <div className="verification-form-wrapper">
       <div className="form-header">
@@ -260,12 +384,6 @@ const VerificationForm = ({ theme, onSubmit }) => {
                   <p>Analyzing content... This may take up to 10 minutes</p>
                 </div>
               )}
-              
-              {isSuccess && (
-                <div className="success-message">
-                  Verification complete!
-                </div>
-              )}
             </div>
           </form>
         )}
@@ -300,12 +418,6 @@ const VerificationForm = ({ theme, onSubmit }) => {
                     <div className="progress-fill" style={{ width: `${pollingProgress}%` }}></div>
                   </div>
                   <p>Analyzing claim... This may take up to 10 minutes</p>
-                </div>
-              )}
-              
-              {isSuccess && (
-                <div className="success-message">
-                  Verification complete!
                 </div>
               )}
             </div>
@@ -361,33 +473,10 @@ const VerificationForm = ({ theme, onSubmit }) => {
               >
                 {isSubmitting ? 'Processing...' : 'Check Image'}
               </button>
-              
-              {isSuccess && verificationResult && (
-                <div className="success-message">
-                  {verificationResult.is_deepfake ? 
-                    `Deepfake detected (${verificationResult.confidence}% confidence)` : 
-                    `Authentic image (${verificationResult.confidence}% confidence)`}
-                </div>
-              )}
             </div>
           </form>
         )}
       </motion.div>
-      
-      {/* Display verification results if available */}
-      {verificationResult && (activeTab === 'video' || activeTab === 'text') && (
-        <div className="verification-results">
-          <h3>Verification Results</h3>
-          <div className="result-card">
-            <div className={`consensus-badge ${verificationResult.consensus?.toLowerCase()}`}>
-              {verificationResult.consensus === "True" ? "Verified" : 
-               verificationResult.consensus === "False" ? "Debunked" : 
-               "Inconclusive"}
-            </div>
-            <p className="evidence">{verificationResult.evidence}</p>
-          </div>
-        </div>
-      )}
       
       <div className="form-help">
         <p>Need help? <a href="#contact">Contact us</a></p>

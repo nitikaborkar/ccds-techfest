@@ -20,6 +20,8 @@ from transcribe import TranscriptExtractor
 from claim_extract import ClaimExtractor
 from claim_verifier import process_claim
 from final_result import analyze_ratings
+from medical_myth_debunker import MedicalMythDebunker
+
 
 model = None
 processor = None
@@ -32,6 +34,8 @@ async def lifespan(app: FastAPI):
         app.state.model = model
         app.state.processor = processor
         print("Deepfake detection model loaded successfully")
+        app.state.myth_debunker = MedicalMythDebunker()
+        print("MedicalMythDebunker initialized successfully")
         yield
     except Exception as e:
         print(f"Error loading deepfake detection model: {e}")
@@ -151,6 +155,16 @@ async def verification_status():
         response["evidence"] = "Insufficient evidence available"
     
     return response
+
+@app.get("/get-myth")
+async def get_myth():
+    try:
+        myth_debunker = app.state.myth_debunker
+        myth = myth_debunker.get_random_myth()
+        return JSONResponse(content={"myth": myth}, status_code=200)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Failed to get myth: {str(e)}")
+
 
 @app.post("/api/detect-deepfake/")
 async def detect_deepfake(request: Request, file: UploadFile = File(...)) -> Dict:

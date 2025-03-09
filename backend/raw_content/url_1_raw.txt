@@ -1,8 +1,8 @@
 [
     {
-        "url": "https://dicasdadraanamaria.com/artigos/limao2.pdf",
-        "author": "Unknown",
-        "claim": "lemons causes cancer",
+        "url": "https://www.sciencedirect.com/science/article/pii/S1530891X21011083",
+        "author": "",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
         "rating": -1,
         "scientific_evidence": "",
         "counter_claim": "",

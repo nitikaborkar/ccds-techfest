@@ -363,3 +363,200 @@
       font-size: 0.9rem;
     }
   }
+
+  /* Existing VerificationForm styles */
+
+/* Add these new styles for the result page */
+.verification-result-page {
+    background-color: var(--card-bg, #fff);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    padding: 2rem;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+  
+  .result-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .result-header h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .back-button {
+    position: absolute;
+    bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-secondary, #666);
+    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 0.5rem;
+    transition: color 0.2s;
+  }
+  
+  .back-button:hover {
+    color: var(--text-primary, #333);
+  }
+  
+  .submitted-content {
+    margin-bottom: 2rem;
+  }
+  
+  .submitted-content h3 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary, #666);
+    text-transform: capitalize;
+  }
+  
+  .content-preview {
+    background-color: var(--bg-secondary, #f5f5f5);
+    border-radius: 8px;
+    padding: 1rem;
+    max-height: 200px;
+    overflow-y: auto;
+  }
+  
+  .content-url {
+    font-family: monospace;
+    word-break: break-all;
+  }
+  
+  .content-text {
+    font-style: italic;
+  }
+  
+  .content-image {
+    max-width: 100%;
+    max-height: 150px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+  
+  .result-card-large {
+    background-color: var(--bg-secondary, #f5f5f5);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .consensus-badge-large {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .consensus-badge-large.true {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #2e7d32;
+    border: 1px solid rgba(76, 175, 80, 0.3);
+  }
+  
+  .consensus-badge-large.false {
+    background-color: rgba(244, 67, 54, 0.15);
+    color: #c62828;
+    border: 1px solid rgba(244, 67, 54, 0.3);
+  }
+  
+  .consensus-badge-large.inconclusive {
+    background-color: rgba(255, 152, 0, 0.15);
+    color: #ef6c00;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+  }
+  
+  .result-details h4 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .evidence, .confidence {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  .result-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .action-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--button-secondary-bg, #f0f0f0);
+    color: var(--text-primary, #333);
+    border: none;
+    border-radius: 8px;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1;
+    justify-content: center;
+  }
+  
+  .action-button:hover {
+    background-color: var(--button-secondary-hover, #e0e0e0);
+  }
+  
+  .action-button.share {
+    background-color: var(--primary-color, #3a86ff);
+    color: white;
+  }
+  
+  .action-button.share:hover {
+    background-color: var(--primary-color-dark, #2970e6);
+  }
+  
+  /* Dark theme adjustments */
+  .dark .verification-result-page {
+    background-color: var(--card-bg, #1e1e1e);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+  }
+  
+  .dark .content-preview {
+    background-color: var(--bg-secondary, #2a2a2a);
+  }
+  
+  .dark .result-card-large {
+    background-color: var(--bg-secondary, #2a2a2a);
+  }
+  
+  .dark .action-button {
+    background-color: var(--button-secondary-bg, #333);
+    color: var(--text-primary, #eee);
+  }
+  
+  .dark .action-button:hover {
+    background-color: var(--button-secondary-hover, #444);
+  }
+  
+  .dark .back-button {
+    color: var(--text-secondary, #aaa);
+  }
+  
+  .dark .back-button:hover {
+    color: var(--text-primary, #eee);
+  }

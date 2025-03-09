@@ -1,10 +1,11 @@
 [
     {
-        "url": "https://www.thelancet.com/journals/lanonc/article/PIIS1470-20451730186-9/fulltext",
-        "author": "Dr Eva Steliarova-Foucher, PhD",
-        "claim": "lemons causes cancer",
-        "rating": 0,
-        "scientific_evidence": "The content of the article discusses the incidence of childhood cancer and does not mention lemons or any evidence linking them to cancer. It focuses on cancer statistics, types, and geographical variations in childhood cancer incidence.",
-        "counter_claim": "The claim that lemons cause cancer is not supported by any evidence in the provided content. The article emphasizes the importance of accurate cancer data and does not provide any information on dietary factors or specific foods, such as lemons, being linked to cancer."
+        "url": "https://www.sciencedirect.com/science/article/pii/S000291652327971X",
+        "author": "Drewnowski Adam, Bellisle France",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
+        "rating": 4,
+        "scientific_evidence": "The article discusses the consumption of sugar-sweetened beverages and their link to obesity, noting that energy-containing liquids are less satiating than solid foods. However, it also mentions that numerous clinical studies have shown that sugar-containing liquids can lead to significant and sustained weight loss when consumed in place of usual meals. This suggests that the relationship between liquid sugar energy and body weight is complex and not solely dependent on caloric content.",
+        "counter_claim": "The evidence indicates that simply replacing sugary drinks with zero-calorie alternatives may not guarantee weight management success, as the effects of sugar consumption on body weight can depend on behavioral intent, context, and the mode of use. Therefore, the claim is not fully supported by the evidence presented.",
+        "error": false
     }
 ]

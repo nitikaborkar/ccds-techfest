@@ -1,11 +1,11 @@
 [
     {
-        "url": "https://www.sciencedirect.com/science/article/pii/S0278691511005643",
-        "author": "",
-        "claim": "lemons causes cancer",
-        "rating": -1,
-        "scientific_evidence": "",
-        "counter_claim": "",
+        "url": "https://cdr.lib.unc.edu/concern/honors_theses/w0892f77m",
+        "author": "Sahil Vasa",
+        "claim": "Replacing sugary drinks with zero-calorie alternatives, like diet soda, can help with weight management.",
+        "rating": 6,
+        "scientific_evidence": "The study found that replacing caloric beverages with non-caloric beverages resulted in significant weight loss, particularly among males. However, it also noted that high soda consumers did not show more weight loss than low soda consumers, indicating that simply switching to diet soda may not guarantee weight loss success for everyone.",
+        "counter_claim": "While the evidence supports that replacing caloric beverages can lead to weight loss, it also suggests that not all individuals, particularly high soda consumers, experience the same benefits from switching to diet alternatives. This indicates that the effectiveness of diet soda for weight management may vary among individuals.",
         "error": false
     }
 ]
