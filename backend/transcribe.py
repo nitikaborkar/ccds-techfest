@@ -15,7 +15,9 @@ class TranscriptExtractor:
         load_dotenv()
         
         # Set API key (prioritize passed key, then env variable)
-        self.api_key = api_key or os.getenv("OPENAI_API_KEY")
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        print("APIIIIIII", os.getenv("OPENAI_API_KEY"))
+        print(f"API Key: {self.api_key}")
         if not self.api_key:
             raise ValueError("OpenAI API key not found. Please provide it or set OPENAI_API_KEY environment variable.")
         
