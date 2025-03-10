@@ -4,7 +4,7 @@ This documentation will guide you through setting up and running the MedBuster a
 
 ## Overview
 
-VerifyAI is a claim verification platform designed to combat misinformation by providing AI-powered verification for claims from videos, text, and images. The application features:
+MedBuster is a claim verification platform designed to combat misinformation by providing AI-powered verification for claims from videos, text, and images. The application features:
 
 - Video URL verification
 - Text claim verification
